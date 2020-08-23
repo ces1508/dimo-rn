@@ -1,0 +1,6 @@
+export { default as Button } from './Button'
+export { default as Category } from './Category'
+export { default as CategorySkelleton } from './CategorySkelleton'
+export { default as Price } from './price'
+export { default as PlateSkelleton } from './PlateSkelleton'
+export { default as ProductName } from './productName'
