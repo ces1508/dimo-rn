@@ -15,9 +15,7 @@ const CategoryItem = ({ name, slug, image }) => (
       <View style={styles.imageWrapper}>
         <Image
           style={styles.image}
-          source={{ uri: image }}
-          width={60}
-          height={60} />
+          source={{ uri: image }} />
       </View>
       <Text
         style={styles.text}
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         elevation: 5,
-        backgroundColor: 'red'
+        backgroundColor: '#0000001A'
       },
       ios: {
         shadowColor: "#0000001A",
@@ -57,6 +55,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#FFCA00',
     borderWidth: 1,
+    width: 60,
+    height: 60
   },
   text: {
     marginTop: 7,

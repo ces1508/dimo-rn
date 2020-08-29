@@ -5,7 +5,7 @@ import {
   StyleSheet,
   FlatList
 } from 'react-native'
-import { CategorySkelleton } from '.'
+import { generateSkelletonData } from '../utils'
 
 const CategorySkelletonItem = () => (
   <View style={styles.wrapper}>
@@ -15,10 +15,7 @@ const CategorySkelletonItem = () => (
 )
 
 const CategorySkelletonList = ({ quantity }) => {
-  let data = []
-  for (let i = 0; i < quantity; i++) {
-    data.push({ id: i.toString() })
-  }
+  const data =  generateSkelletonData(quantity, 'categeoy_restaurant')
 
   return <FlatList
     data={data}

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { AllHtmlEntities as Entities } from 'html-entities'
 
-const ProductName = ({ name }) => {
+const ProductName = ({ name, styles }) => {
   return (
     <Text
-      numberOfLines={2}
+      style={styles}
+      numberOfLines={1}
       lineBreakMode='tail'>
-      {name.replace(/<|span|>/g, '').replace(/-/g, ' ').trim().toLowerCase()}
+      {name.replace(/<|span|>/g, '').replace(/-/g, ' ').trim()}
     </Text>
   )
 }

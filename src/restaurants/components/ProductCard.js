@@ -4,26 +4,36 @@ import {
   View,
   Image,
   StyleSheet,
-  Platform
+  Platform,
+  TouchableOpacity
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { Price, ProductName } from '../../ui'
 
-const PlateCard = ({ name, price, image }) => {
+const PlateCard = ({ name, price, image, slug }) => {
+  const navigation = useNavigation()
+  function handlerPress () {
+    navigation.navigate('PlateScreen', {  slug, name })
+  }
+
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <View style={styles.descriptionWrapper}>
-        <ProductName name={name} />
-        <Price price={price} />
+    <TouchableOpacity onPress={handlerPress} style={{ flex: 1 }}>
+      <View style={styles.card}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <View style={styles.descriptionWrapper}>
+          <ProductName name={name} styles={styles.name} />
+          <Price price={price} styles={styles.price} />
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
 PlateCard.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired
+  image: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired
 }
 
 export default PlateCard
@@ -36,6 +46,7 @@ const styles = new StyleSheet.create({
     backgroundColor: '#fff',
     marginVertical: 8,
     marginHorizontal: 6,
+    overflow: 'hidden',
     ...Platform.select({
       android: {
         elevation: 5
@@ -54,12 +65,18 @@ const styles = new StyleSheet.create({
   image: {
     width: '100%',
     height: 170,
+    backgroundColor: '#EEEEEE'
   },
   descriptionWrapper: {
     padding: 7
   },
   name: {
-    fontSize: 17
+    fontSize: 17,
+    marginVertical: 5
   },
+  price: {
+    fontSize: 15,
+    fontWeight: 'bold'
+  }
 
 })

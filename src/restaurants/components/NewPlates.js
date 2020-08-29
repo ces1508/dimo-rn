@@ -11,19 +11,20 @@ import ProductCard from './ProductCard'
 const API = 'https://dimo.shop/api/'
 const fetcher = url => fetch(url).then(r => r.json())
 
-const NewPlates = () => {
+const NewPlates = ({ navigation }) => {
   function PlateList () {
     const { data } = useSWR(`${API}/app/products/new_products`, fetcher, { suspense: true })
     const plates = data.data.map(plate => ({
       name: plate.attributes.name,
       price: plate.attributes.price,
+      slug: plate.attributes.slug,
       image: plate.attributes['image-data'].thumb.url
     }))
     return (
       <FlatList
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.slug}
         style={{ paddingVertical: 10 }}
-        renderItem={({ item }) => <ProductCard {...item} />}
+        renderItem={({ item }) => <ProductCard {...item} navigation={navigation} />}
         data={plates}
         numColumns={2}
       />
